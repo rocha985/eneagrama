@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const calculateScores = require("./calculateScores");
+const calculateScores = require("./api/calculateScores");
 const path = require("path");
 
 const app = express();

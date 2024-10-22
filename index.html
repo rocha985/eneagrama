@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Descubra Seu Tipo de Personalidade</h1>
-    <div class="form-container">
+    <div class="start-screen" id="start-screen">
+        <h2>Bem-vindo ao Teste de Eneagrama</h2>
+        <p>Este teste ajuda você a descobrir seu eneatipo, uma classificação baseada na teoria do Eneagrama, que descreve nove tipos de personalidade e suas conexões. Cada eneatipo reflete diferentes características, formas de ver o mundo e padrões de comportamento.</p>
+        <p>As respostas seguem uma escala de 0 a 5. Uma nota "0" significa que a afirmação não se aplica a você, enquanto uma nota "5" indica que a afirmação é completamente verdadeira para sua personalidade.</p>
+        <button id="start-button">Iniciar Teste</button>
+    </div>
+
+    <div class="form-container" style="display: none;">
         <form id="personality-form">
             <div id="questions-container"></div>
             <button type="submit">Enviar</button>
@@ -24,6 +30,11 @@
 
     <script src="questions.js"></script>
     <script>
+        document.getElementById("start-button").addEventListener("click", function() {
+            document.getElementById("start-screen").style.display = "none";
+            document.querySelector(".form-container").style.display = "block";
+        });
+
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("personality-form").addEventListener("submit", function(event) {
                 event.preventDefault();
@@ -44,7 +55,23 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById("result").innerText = `Seu eneatipo é: ${data.resultEneatipo}`;
+                    const eneatipo = data.resultEneatipo;
+
+                    const descricoesEneatipo = {
+                        1: "O Perfeccionista. Motivado por fazer as coisas corretamente e seguir padrões éticos.",
+                        2: "O Ajudante. Focado em atender as necessidades dos outros e ser amado.",
+                        3: "O Realizador. Deseja sucesso, ser eficiente e admirado.",
+                        4: "O Individualista. Busca autenticidade, autoexpressão e entendimento profundo de si mesmo.",
+                        5: "O Investigador. Prefere o conhecimento, a privacidade e a independência.",
+                        6: "O Leal. Focado em segurança, confiabilidade e lealdade.",
+                        7: "O Entusiasta. Ama a liberdade, a variedade e as novas experiências.",
+                        8: "O Desafiador. Valorizam o controle, a independência e a autoafirmação.",
+                        9: "O Pacificador. Busca a paz, a harmonia e a evitação de conflitos."
+                    };
+
+                    document.getElementById("result").innerText = `Seu eneatipo é: ${eneatipo}`;
+                    document.getElementById("result").innerText += `\n\n${descricoesEneatipo[eneatipo]}`;
+
                     document.getElementById("popup").style.display = "flex";
                 })
                 .catch(error => {

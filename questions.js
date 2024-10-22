@@ -47,7 +47,47 @@ const questions = [
 
     "Você valoriza muito o conhecimento, a ciência e a informação. De fato, você busca incessantemente o conhecimento, lendo, estudando, pesquisando e pensando. Você admira as pessoas que são inteligentes.",
 
-    "Você leva um tempo para confiar nas pessoas e acha prudente ficar de olho para ver o que vai acontecer"
+    "Você leva um tempo para confiar nas pessoas e acha prudente ficar de olho para ver o que vai acontecer, especialmente no caso de pessoas que ainda não conhece bem. Aliás, mesmo depois de conhecê-las, acha importante checar de vez em quando para se certificar.",
+
+    "Você sempre fez muitas coisas ao mesmo tempo. É uma dificuldade para você quando é obrigado a fazer uma coisa só, do início ao fim, para somente depois fazer outra. É comum você ler mais de um livro ou estudar mais de uma coisa ao mesmo tempo. É comum também misturar assuntos completamente diferentes.",
+
+    "Você é uma pessoa que causa impacto, mesmo quando nem pensa em fazer isso. Seu tom de voz é naturalmente alto. Muitas vezes, você está apenas falando, mas acham que está gritando. É o seu jeito natural de falar.",
+
+    "Você aprecia muito o valor do grupo e do trabalho em equipe. Prefere agir em um time a que fazer as coisas isoladamente. Acredita que o mérito da vitória é do grupo como um todo, e não de uma ou outra pessoa. Você se sentiria bem desconfortável se alguém começasse a falar que você é o melhor do grupo e o colocasse em destaque por causa disso.",
+
+    "Para você não existe trabalho mais ou menos. Ou está bem feito, ou não está. Todo trabalho deve ser entregue com perfeição nos mínimos detalhes.",
+
+    "É difícil para você pedir explicitamente carinho, atenção ou mesmo algum presente para alguém. Você acredita que as pessoas deveriam saber quando está precisando disso. Para você, é natural saber.",
+
+    "Você tem uma grande habilidade para se adaptar em contextos diferentes e até mesmo para se comportar de maneiras diferentes em lugares diferentes - ainda mais se isso for positivo para sua imagem e para suas conquistas nesses diversos meios. Há quem diga que você parece pessoas diferentes em casa, no trabalho, no clube etc.",
+
+    "Algumas pessoas o consideram um pouco dramático, emocional. De fato, você sente muitas emoções (e pode ou não mostrá-las). Quando elas aparecem, você costuma ficar pensativo em seu mundo. Você geralmente sente que as pessoas compreendem bem isso.",
+
+    "Você não gosta de ter o seu espaço invadido sem aviso prévio e fica bastante incomodado quando as pessoas se aproximam demais ou põem a mão em você ao falar. Também não acha necessário que elas falem alto demais ou puxem assuntos fúteis quando não o conhecem.",
+
+    "Você é uma pessoa ansiosa, que se preocupa muito com o perigo de alguma coisa dar errado. Se você não se sente preparado ou se não tem tempo para se preparar como gostaria, essa ansiedade aumenta ainda mais e muitos pensamentos aparecem. A maioria dos pensamentos é do tipo: “E se isso acontecer?”, “E se aquilo acontecer?”",
+
+    "Você é muito otimista e sempre consegue ver o lado positivo nas coisas. Fica incomodado ao se deparar com pessoas muito negativas ou muito tristes. Sua tendência é procurar animá-las ou mesmo se afastar delas. Você acha que elas deveriam pensar de forma diferente e ser mais otimista também. Por outro lado, algumas pessoas acham que você deveria ter os pés mais no chão. Contudo, você acredita na importância de ser visionário.",
+
+    "Você tem uma tendência imediata de partir para a ação. Enquanto os outros pensam, analisam, seu impulso é sair fazendo, e rápido. Às vezes, você parece um trator desgovernado que, se não tomar cuidado, atropela as pessoas. Fica muito impaciente se tiver que esperar as coisas acontecerem. É tão rápido que, vez por outra, diz o que não deveria ter dito e faz o que não deveria ter feito. Quando vê, já foi.",
+
+    "Muitas vezes, você opta por acompanhar as decisões de outras pessoas para não causar problemas ou brigas. Mais importante do que a satisfação de uma vontade pessoal é a harmonia entre as pessoas. Pode ser que alguma vontade sua seja deixada para trás, mais isso não é uma coisa tão importante assim.",
+
+    "Você costuma se irritar bastante com pessoas irresponsáveis ou descompromissadas. Para você, compromisso é algo muito importante.",
+
+    "Você é uma pessoa naturalmente carinhosa e atenciosa, que dá muita importância aos relacionamentos pessoais, mesmo no trabalho. É comum muitas pessoas do serviço se tornarem seus amigos pessoais. E, muitas vezes, você age como conselheiro e confidente para elas.",
+
+    "Você é uma pessoa acelerada e, geralmente, não tem paciência com aqueles que considera lentos - especialmente se essa lentidão puder atrapalhar a conquista de uma meta em que você está envolvido ou a sua imagem, de sua equipe ou da empresa.",
+
+    "É comum você idealizar muito uma situação antes de ela acontecer – uma viagem que ainda não ocorreu ou um relacionamento que ainda não começou. Quando a situação acontece de fato, na maioria das vezes não era tudo aquilo que você sentia que seria. É comum você deixar de querer tão intensamente algo logo depois que o conquista.",
+
+    "Você gosta de resolver problemas, charadas e quebra-cabeças que o fazem pensar. Também tem curiosidade em saber como as coisas funcionam, em que lógica e mecanismo estão baseadas. Prefere resolver os problemas por conta própria, pensando, a pedir ajuda de outras pessoas.",
+
+    "É comum você duvidar de sua competência, mesmo que outras pessoas achem que tem total capacidade. É comum também perguntar se está indo no caminho certo para poder ter certeza. Quando assume algum cargo em que é a autoridade, no início, é comum não acreditar muito que desemprenhará um bom papel.",
+
+    "Você aprecia a liberdade acima de tudo. Costuma ter menos preconceitos que as demais pessoas e acredita ser importante que cada um tenha, na medida do possível, liberdade para fazer o que quer, na hora que quer. Compromissos de muito longo prazo ou pessoas que dependam demais de você o fazem sentir-se amarrado e desconfortável.",
+
+    "Você não veio a esse mundo para agradar a ninguém. Você é extremamente verdadeiro e franco e fala o que tiver que ser falado a quem quer que seja. A verdade deve ser falada a qualquer custo, não importa se as pessoas vão amá-lo ou odiá-lo por isso. Isso já lhe causou problemas no passado."
 ];
 
 function renderQuestions() {
@@ -59,7 +99,8 @@ function renderQuestions() {
         questionDiv.innerHTML = `
             <label for="q${index + 1}">${index + 1}. ${question}</label>
             <div class="scale">
-                <label><input type="radio" name="q${index + 1}" value="1" required> 1</label>
+                <label><input type="radio" name="q${index + 1}" value="0" required> 0</label>
+                <label><input type="radio" name="q${index + 1}" value="1"> 1</label>
                 <label><input type="radio" name="q${index + 1}" value="2"> 2</label>
                 <label><input type="radio" name="q${index + 1}" value="3"> 3</label>
                 <label><input type="radio" name="q${index + 1}" value="4"> 4</label>
@@ -67,7 +108,7 @@ function renderQuestions() {
             </div>
         `;
         questionsContainer.appendChild(questionDiv);
-    });
+    });    
 }
 
 renderQuestions();

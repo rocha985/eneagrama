@@ -17,8 +17,12 @@ const calculateScores = (answers) => {
         41: 5, 42: 6, 43: 7, 44: 8, 45: 9,
     };
 
+    if (!answers || typeof answers !== 'object') {
+        throw new Error("Invalid answers format");
+    }
+
     for (const [key, value] of Object.entries(answers)) {
-        const questionIndex = parseInt(key.replace('q', ''), 10);
+        const questionIndex = parseInt(key.replace('q', ''));
         const eneatipo = questionToEneatipoMap[questionIndex];
 
         if (eneatipo) {
@@ -29,12 +33,10 @@ const calculateScores = (answers) => {
         }
     }
 
-    const top3 = Object.entries(eneatipoScores)
-        .map(([eneatipo, score]) => ({ eneatipo: parseInt(eneatipo, 10), score }))
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 3);
+    // Ordena os eneatipos por pontuação (do maior para o menor)
+    const sortedEneatipos = Object.entries(eneatipoScores)
+        .map(([eneatipo, score]) => ({ eneatipo: parseInt(eneatipo), score }))
+        .sort((a, b) => b.score - a.score); // Ordenando pela pontuação
 
-    return top3;
+    return sortedEneatipos;
 };
-
-export default calculateScores;

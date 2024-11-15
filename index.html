@@ -30,22 +30,22 @@
 
     <script src="questions.js"></script>
     <script>
-        document.getElementById("start-button").addEventListener("click", function() {
+        document.getElementById("start-button").addEventListener("click", function () {
             document.getElementById("start-screen").style.display = "none";
             document.querySelector(".form-container").style.display = "block";
         });
-
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("personality-form").addEventListener("submit", function(event) {
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("personality-form").addEventListener("submit", function (event) {
                 event.preventDefault();
-
+    
                 const formData = new FormData(this);
                 const userAnswers = {};
-
+    
                 formData.forEach((value, key) => {
                     userAnswers[key] = value;
                 });
-
+    
                 fetch("/api/calculate", {
                     method: "POST",
                     headers: {
@@ -55,25 +55,24 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    const top3Eneatipos = data;
                     const descriptions = {
-                        1: "O Perfeccionista. Motivado por fazer as coisas corretamente e seguir padrões éticos.",
-                        2: "O Ajudante. Focado em atender as necessidades dos outros e ser amado.",
-                        3: "O Realizador. Deseja sucesso, ser eficiente e admirado.",
-                        4: "O Individualista. Busca autenticidade, autoexpressão e entendimento profundo de si mesmo.",
-                        5: "O Investigador. Prefere o conhecimento, a privacidade e a independência.",
-                        6: "O Leal. Focado em segurança, confiabilidade e lealdade.",
-                        7: "O Entusiasta. Ama a liberdade, a variedade e as novas experiências.",
-                        8: "O Desafiador. Valorizam o controle, a independência e a autoafirmação.",
-                        9: "O Pacificador. Busca a paz, a harmonia e a evitação de conflitos."
+                        1: "Vencedor. Motivado por sucesso, eficiência e reconhecimento.",
+                        2: "Ajudante. Focado em atender as necessidades dos outros e ser amado.",
+                        3: "Analista. Deseja sucesso, ser eficiente e admirado.",
+                        4: "Individualista. Busca autenticidade, autoexpressão e entendimento profundo de si mesmo.",
+                        5: "Investigador. Prefere o conhecimento, a privacidade e a independência.",
+                        6: "Leal. Focado em segurança, confiabilidade e lealdade.",
+                        7: "Entusiasta. Ama a liberdade, a variedade e as novas experiências.",
+                        8: "Poderoso. Valorizam o controle, a independência e a autoafirmação.",
+                        9: "Pacificador. Busca a paz, a harmonia e a evitação de conflitos."
                     };
-
-                    let resultText = "Os três eneatipos com maior pontuação foram:\n\n";
-                    top3Eneatipos.forEach((eneatipoObj, index) => {
+    
+                    let resultText = "Provavelmente seu eneatipo é uma das três maiores pontuações:\n\n";
+                    data.forEach((eneatipoObj, index) => {
                         const { eneatipo, score } = eneatipoObj;
-                        resultText += `${index + 1}. Eneatipo ${eneatipo} - ${descriptions[eneatipo]} (Pontuação: ${score})\n\n`;
+                        resultText += `${eneatipo} - ${descriptions[eneatipo]} (${score} de 25)\n`;
                     });
-
+    
                     document.getElementById("result").innerText = resultText;
                     document.getElementById("popup").style.display = "flex";
                 })
@@ -82,10 +81,11 @@
                 });
             });
         });
-
+    
         function closePopup() {
             document.getElementById("popup").style.display = "none";
         }
     </script>
+    
 </body>
 </html>

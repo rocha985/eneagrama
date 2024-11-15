@@ -96,19 +96,20 @@ function renderQuestions() {
     questions.forEach((question, index) => {
         const questionDiv = document.createElement("div");
         questionDiv.classList.add("question");
+        
         questionDiv.innerHTML = `
             <label for="q${index + 1}">${index + 1}. ${question}</label>
             <div class="scale">
-                <label><input type="radio" name="q${index + 1}" value="0" required> 0</label>
-                <label><input type="radio" name="q${index + 1}" value="1"> 1</label>
-                <label><input type="radio" name="q${index + 1}" value="2"> 2</label>
-                <label><input type="radio" name="q${index + 1}" value="3"> 3</label>
-                <label><input type="radio" name="q${index + 1}" value="4"> 4</label>
-                <label><input type="radio" name="q${index + 1}" value="5"> 5</label>
+                <label><input type="radio" name="q${index + 1}" value="0" required> Nada a ver comigo</label>
+                <label><input type="radio" name="q${index + 1}" value="1"> Quase nada a ver comigo</label>
+                <label><input type="radio" name="q${index + 1}" value="2"> Pouco a ver comigo</label>
+                <label><input type="radio" name="q${index + 1}" value="3"> Tem a ver comigo</label>
+                <label><input type="radio" name="q${index + 1}" value="4"> Muito a ver comigo</label>
+                <label><input type="radio" name="q${index + 1}" value="5"> Tudo a ver comigo</label>
             </div>
         `;
         questionsContainer.appendChild(questionDiv);
-    });    
+    });
 }
 
 renderQuestions();

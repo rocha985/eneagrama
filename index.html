@@ -55,9 +55,8 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    const eneatipo = data.resultEneatipo;
-
-                    const descricoesEneatipo = {
+                    const top3Eneatipos = data;
+                    const descriptions = {
                         1: "O Perfeccionista. Motivado por fazer as coisas corretamente e seguir padrões éticos.",
                         2: "O Ajudante. Focado em atender as necessidades dos outros e ser amado.",
                         3: "O Realizador. Deseja sucesso, ser eficiente e admirado.",
@@ -69,9 +68,13 @@
                         9: "O Pacificador. Busca a paz, a harmonia e a evitação de conflitos."
                     };
 
-                    document.getElementById("result").innerText = `Seu eneatipo é: ${eneatipo}`;
-                    document.getElementById("result").innerText += `\n\n${descricoesEneatipo[eneatipo]}`;
+                    let resultText = "Os três eneatipos com maior pontuação foram:\n\n";
+                    top3Eneatipos.forEach((eneatipoObj, index) => {
+                        const { eneatipo, score } = eneatipoObj;
+                        resultText += `${index + 1}. Eneatipo ${eneatipo} - ${descriptions[eneatipo]} (Pontuação: ${score})\n\n`;
+                    });
 
+                    document.getElementById("result").innerText = resultText;
                     document.getElementById("popup").style.display = "flex";
                 })
                 .catch(error => {

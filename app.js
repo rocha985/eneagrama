@@ -17,8 +17,8 @@ app.get("/", (req, res) => {
 app.post("/calculate", (req, res) => {
     const userAnswers = req.body;
     try {
-        const resultEneatipo = calculateScores(userAnswers);
-        res.json({ resultEneatipo });
+        const top3Eneatipos = calculateScores(userAnswers);
+        res.json(top3Eneatipos);
     } catch (error) {
         console.error("Error processing request:", error);
         res.status(500).send("Internal Server Error");

@@ -17,12 +17,8 @@ const calculateScores = (answers) => {
         41: 5, 42: 6, 43: 7, 44: 8, 45: 9,
     };
 
-    if (!answers || typeof answers !== 'object') {
-        throw new Error("Invalid answers format");
-    }
-
     for (const [key, value] of Object.entries(answers)) {
-        const questionIndex = parseInt(key.replace('q', ''));
+        const questionIndex = parseInt(key.replace('q', ''), 10);
         const eneatipo = questionToEneatipoMap[questionIndex];
 
         if (eneatipo) {
@@ -33,17 +29,12 @@ const calculateScores = (answers) => {
         }
     }
 
-    let maxScore = 0;
-    let resultEneatipo = null;
+    const top3 = Object.entries(eneatipoScores)
+        .map(([eneatipo, score]) => ({ eneatipo: parseInt(eneatipo, 10), score }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3);
 
-    for (const [eneatipo, score] of Object.entries(eneatipoScores)) {
-        if (score > maxScore) {
-            maxScore = score;
-            resultEneatipo = eneatipo;
-        }
-    }
-
-    return resultEneatipo;
+    return top3;
 };
 
-module.exports = calculateScores;
+export default calculateScores;

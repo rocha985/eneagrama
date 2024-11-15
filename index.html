@@ -24,7 +24,7 @@
     <div class="popup" id="popup">
         <div class="popup-content">
             <h2>Resultado do Teste</h2>
-            <p>Provavelmente seu eneatipo é um dos três com maior pontuação:</p>
+            <h3>Provavelmente seu eneatipo é um dos três com maior pontuação:</h3>
             <div id="result"></div>
             <button class="close-btn" onclick="closePopup()">Fechar</button>
         </div>
@@ -58,15 +58,15 @@
                 .then(response => response.json())
                 .then(data => {
                     const descriptions = {
-                        1: "Vencedor",
-                        2: "Analista",
-                        3: "Poderoso",
-                        4: "Realizador",
-                        5: "Pacificador",
-                        6: "Ajudante",
-                        7: "Desafiador",
-                        8: "Meditativo",
-                        9: "Conservador"
+                        1: "- Vencedor",
+                        2: "- Analista",
+                        3: "- Poderoso",
+                        4: "- Realizador",
+                        5: "- Pacificador",
+                        6: "- Ajudante",
+                        7: "- Desafiador",
+                        8: "- Meditativo",
+                        9: "- Conservador"
                     };
 
                     let resultText = "";

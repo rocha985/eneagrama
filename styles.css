@@ -99,7 +99,34 @@ button:hover {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
-    text-align: center;
+    text-align: left;
+    width: 80%;
+    max-width: 600px;
+}
+
+#result {
+    white-space: pre-wrap; /* Para preservar espaços e quebras de linha */
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.result-item span {
+    font-size: 16px;
+}
+
+.result-item .eneatipo {
+    width: 70%; /* Nome do eneatipo ocupa 70% do espaço */
+}
+
+.result-item .score {
+    text-align: right;
+    width: 30%; /* Pontuação alinhada à direita */
 }
 
 .info-popup {

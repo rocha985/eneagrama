@@ -55,13 +55,28 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    let resultText = "Provavelmente seu eneatipo é uma das três maiores pontuações:\n\n";
+                    const descriptions = {
+                        1: "Vencedor",
+                        2: "Analista",
+                        3: "Poderoso",
+                        4: "Realizador",
+                        5: "Pacificador",
+                        6: "Ajudante",
+                        7: "Desafiador",
+                        8: "Meditativo",
+                        9: "Conservador"
+                    };
 
-                    data.forEach(eneatipoObj => {
-                        resultText += `${eneatipoObj.eneatipo} - Pontuação: ${eneatipoObj.score} de 25\n`;
+                    let resultText = "";
+                    data.forEach((eneatipoObj, index) => {
+                        const { eneatipo, score } = eneatipoObj;
+                        resultText += `<div class="result-item">
+                                           <span class="eneatipo">${eneatipo} ${descriptions[eneatipo]}</span>
+                                           <span class="score">${score} de 25</span>
+                                         </div>`;
                     });
 
-                    document.getElementById("result").innerText = resultText;
+                    document.getElementById("result").innerHTML = resultText;
                     document.getElementById("popup").style.display = "flex";
                 })
                 .catch(error => {

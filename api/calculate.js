@@ -5,8 +5,11 @@ export default function handler(req, res) {
         const userAnswers = req.body;
 
         try {
-            const top3Eneatipos = calculateScores(userAnswers);
-            res.status(200).json(top3Eneatipos);
+            const allEneatipos = calculateScores(userAnswers);
+            
+            const sortedEneatipos = allEneatipos.sort((a, b) => b.score - a.score);
+            
+            res.status(200).json(sortedEneatipos);
         } catch (error) {
             console.error("Erro ao calcular o eneatipo:", error);
             res.status(500).json({ error: "Erro ao calcular o eneatipo" });

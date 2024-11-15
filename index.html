@@ -34,18 +34,18 @@
             document.getElementById("start-screen").style.display = "none";
             document.querySelector(".form-container").style.display = "block";
         });
-    
+
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("personality-form").addEventListener("submit", function (event) {
                 event.preventDefault();
-    
+
                 const formData = new FormData(this);
                 const userAnswers = {};
-    
+
                 formData.forEach((value, key) => {
                     userAnswers[key] = value;
                 });
-    
+
                 fetch("/api/calculate", {
                     method: "POST",
                     headers: {
@@ -55,24 +55,12 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    const descriptions = {
-                        1: "Vencedor. Motivado por sucesso, eficiência e reconhecimento.",
-                        2: "Ajudante. Focado em atender as necessidades dos outros e ser amado.",
-                        3: "Analista. Deseja sucesso, ser eficiente e admirado.",
-                        4: "Individualista. Busca autenticidade, autoexpressão e entendimento profundo de si mesmo.",
-                        5: "Investigador. Prefere o conhecimento, a privacidade e a independência.",
-                        6: "Leal. Focado em segurança, confiabilidade e lealdade.",
-                        7: "Entusiasta. Ama a liberdade, a variedade e as novas experiências.",
-                        8: "Poderoso. Valorizam o controle, a independência e a autoafirmação.",
-                        9: "Pacificador. Busca a paz, a harmonia e a evitação de conflitos."
-                    };
-    
                     let resultText = "Provavelmente seu eneatipo é uma das três maiores pontuações:\n\n";
-                    data.forEach((eneatipoObj, index) => {
-                        const { eneatipo, score } = eneatipoObj;
-                        resultText += `${eneatipo} - ${descriptions[eneatipo]} (${score} de 25)\n`;
+
+                    data.forEach(eneatipoObj => {
+                        resultText += `${eneatipoObj.eneatipo} - Pontuação: ${eneatipoObj.score} de 25\n`;
                     });
-    
+
                     document.getElementById("result").innerText = resultText;
                     document.getElementById("popup").style.display = "flex";
                 })
@@ -81,11 +69,10 @@
                 });
             });
         });
-    
+
         function closePopup() {
             document.getElementById("popup").style.display = "none";
         }
     </script>
-    
 </body>
 </html>

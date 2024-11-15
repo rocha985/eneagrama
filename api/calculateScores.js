@@ -33,10 +33,11 @@ const calculateScores = (answers) => {
         }
     }
 
-    // Ordena os eneatipos por pontuação (do maior para o menor)
-    const sortedEneatipos = Object.entries(eneatipoScores)
-        .map(([eneatipo, score]) => ({ eneatipo: parseInt(eneatipo), score }))
-        .sort((a, b) => b.score - a.score); // Ordenando pela pontuação
+    const allEneatipos = Object.entries(eneatipoScores).map(([eneatipo, score]) => {
+        return { eneatipo: parseInt(eneatipo), score };
+    });
 
-    return sortedEneatipos;
+    return allEneatipos;
 };
+
+module.exports = calculateScores;

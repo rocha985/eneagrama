@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Personalidade</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="start-screen" id="start-screen">
-        <h2>Bem-vindo ao Teste de Eneagrama</h2>
-        <p>Este teste ajuda você a descobrir seu eneatipo, uma classificação baseada na teoria do Eneagrama, que descreve nove tipos de personalidade e suas conexões. Cada eneatipo reflete diferentes características, formas de ver o mundo e padrões de comportamento.</p>
-        <p>As respostas seguem uma escala de 0 a 5. Uma nota "0" significa que a afirmação não se aplica a você, enquanto uma nota "5" indica que a afirmação é completamente verdadeira para sua personalidade.</p>
-        <button id="start-button">Iniciar Teste</button>
+    <div class="start-popup" id="start-popup">
+        <div class="popup-content">
+            <h2>Bem-vindo ao Teste de Eneagrama</h2>
+
+            <button id="start-button">Iniciar Teste</button>
+        </div>
     </div>
 
     <div class="form-container" style="display: none;">
@@ -27,13 +29,14 @@
             <h3>Provavelmente seu eneatipo é um dos três com maior pontuação:</h3>
             <div id="result"></div>
             <button class="close-btn" onclick="closePopup()">Fechar</button>
+            <button id="download-pdf" class="close-btn">Baixar como PDF</button>
         </div>
     </div>
 
     <script src="questions.js"></script>
     <script>
         document.getElementById("start-button").addEventListener("click", function () {
-            document.getElementById("start-screen").style.display = "none";
+            document.getElementById("start-popup").style.display = "none";
             document.querySelector(".form-container").style.display = "block";
         });
 
@@ -90,6 +93,27 @@
         function closePopup() {
             document.getElementById("popup").style.display = "none";
         }
+
+        document.getElementById("download-pdf").addEventListener("click", function () {
+            const { jsPDF } = window.jspdf;
+
+            // Cria uma nova instância do jsPDF
+            const pdf = new jsPDF();
+
+            // Captura o conteúdo do resultado
+            const resultContent = document.getElementById("result").innerText;
+
+            // Adiciona o título ao PDF
+            pdf.setFontSize(16);
+            pdf.text("Resultado do Teste de Eneagrama", 10, 10);
+
+            // Adiciona o conteúdo ao PDF
+            pdf.setFontSize(12);
+            pdf.text(resultContent, 10, 20);
+
+            // Gera o download do PDF
+            pdf.save("resultado-eneagrama.pdf");
+        });
     </script>
 </body>
 </html>

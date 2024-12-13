@@ -26,15 +26,16 @@
 
     <div class="popup" id="popup">
         <div class="popup-content">
-            <!-- Botão de download com ícone de download -->
-            <button id="download-pdf" class="download-btn"><i class="fas fa-download"></i></button>
-            
             <h2>Resultado do Teste</h2>
             <h3>Provavelmente seu eneatipo é um dos três com maior pontuação:</h3>
             <div id="result"></div>
-            <button class="close-btn" onclick="closePopup()">Fechar</button>
+            
+            <button id="download-pdf" class="close-btn">
+                <i class="fas fa-download"></i>
+            </button>
         </div>
     </div>
+    
     
 
     <script src="questions.js"></script>
@@ -103,35 +104,32 @@
 
             const pdf = new jsPDF();
 
-            pdf.setFont('helvetica', 'bold');
-            pdf.setFontSize(22);
-            pdf.setTextColor(0, 128, 0);
+            pdf.setFontSize(16);
             pdf.text("Resultado do Teste de Eneagrama", 10, 10);
 
-            pdf.setFontSize(18);
-            pdf.setFont('helvetica', 'normal');
-            pdf.setTextColor(0, 0, 0);
-            pdf.text('Provavelmente seu eneatipo é um dos três com maior pontuação:', 10, 30);
+            pdf.setFontSize(12);
+            pdf.text("Provavelmente seu eneatipo é um dos três com maior pontuação:", 10, 20);
 
-            const resultContent = document.getElementById("result").innerText;
-            const lines = resultContent.split('\n');
+            const yOffset = 30;
 
-            let yPosition = 40;
-            lines.forEach(line => {
-                pdf.setFontSize(12);
-                pdf.text(line, 10, yPosition);
-                yPosition += 10;
-            });
+            const resultContent = document.getElementById("result").children;
 
-            pdf.setLineWidth(0.5);
-            pdf.line(10, yPosition + 10, 200, yPosition + 10);
+            let yPos = yOffset;
 
-            pdf.setFontSize(10);
-            pdf.setTextColor(150);
-            pdf.text('teste-eneagrama.vercel.app | ikigai.humberto@gmail.com', 10, yPosition + 20);
+            Array.from(resultContent).forEach(resultItem => {
+                const eneatipoText = resultItem.querySelector(".eneatipo").innerText;
+                const scoreText = resultItem.querySelector(".score").innerText;
 
-            pdf.save("resultado-eneagrama.pdf");
-        });
+                const resultText = `${eneatipoText.padEnd(20)} ${scoreText}`;
+
+                pdf.text(resultText, 10, yPos);
+
+                yPos += 10;
+    });
+
+    pdf.save("resultado-eneagrama.pdf");
+});
+
     </script>
 </body>
 </html>

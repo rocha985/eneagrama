@@ -29,12 +29,13 @@
             <h2>Resultado do Teste</h2>
             <h3>Provavelmente seu eneatipo é um dos três com maior pontuação:</h3>
             <div id="result"></div>
-            
-            <button id="download-pdf" class="close-btn">
+            <button id="download-pdf">
                 <i class="fas fa-download"></i>
             </button>
+            <button class="close-btn" onclick="closePopup()">Fechar</button>
         </div>
     </div>
+    
     
     
 
@@ -104,31 +105,30 @@
 
             const pdf = new jsPDF();
 
+            const resultContent = document.getElementById("result").children;
+
             pdf.setFontSize(16);
             pdf.text("Resultado do Teste de Eneagrama", 10, 10);
 
             pdf.setFontSize(12);
-            pdf.text("Provavelmente seu eneatipo é um dos três com maior pontuação:", 10, 20);
 
-            const yOffset = 30;
+            let yPosition = 20; 
 
-            const resultContent = document.getElementById("result").children;
+            Array.from(resultContent).forEach((item) => {
+                const eneatipo = item.querySelector(".eneatipo").textContent;
+                const score = item.querySelector(".score").textContent;
 
-            let yPos = yOffset;
+                pdf.text(eneatipo, 10, yPosition);
 
-            Array.from(resultContent).forEach(resultItem => {
-                const eneatipoText = resultItem.querySelector(".eneatipo").innerText;
-                const scoreText = resultItem.querySelector(".score").innerText;
+                const scoreWidth = pdf.getTextWidth(score);
+                const pageWidth = pdf.internal.pageSize.width;
+                pdf.text(score, pageWidth - scoreWidth - 10, yPosition);
 
-                const resultText = `${eneatipoText.padEnd(20)} ${scoreText}`;
+                yPosition += 10; 
+            });
 
-                pdf.text(resultText, 10, yPos);
-
-                yPos += 10;
-    });
-
-    pdf.save("resultado-eneagrama.pdf");
-});
+            pdf.save("resultado-eneagrama.pdf");
+        });
 
     </script>
 </body>

@@ -107,35 +107,32 @@
 
             const pdf = new jsPDF();
 
-            pdf.setFont('Arial', 'normal');
-            
-            pdf.setFontSize(20);
+            const resultContent = document.getElementById("result").children;
+
+            pdf.setFontSize(36);
             pdf.setTextColor(40, 167, 69);
             pdf.text("Resultado do Teste de Eneagrama", 10, 20);
 
-            pdf.setFontSize(14);
-            pdf.setTextColor(0, 0, 0);
-            pdf.text("Provavelmente seu eneatipo é um dos três com maior pontuação:", 10, 30);
+            pdf.setFontSize(20);
+            pdf.setTextColor(0, 0, 0); 
 
-            pdf.setFontSize(12);
-            let y = 40;
+            let yPosition = 30;
 
-            const resultContent = document.getElementById("result").innerText;
+            Array.from(resultContent).forEach((item) => {
+                const eneatipo = item.querySelector(".eneatipo").textContent;
+                const score = item.querySelector(".score").textContent;
 
-            const results = resultContent.split("\n");
-            results.forEach(result => {
-                pdf.text(result, 10, y);
-                y += 10;
+                pdf.text(eneatipo, 10, yPosition);
+
+                const scoreWidth = pdf.getTextWidth(score);
+                const pageWidth = pdf.internal.pageSize.width;
+                pdf.text(score, pageWidth - scoreWidth - 10, yPosition);
+
+                yPosition += 10;
             });
-
-            pdf.setFontSize(10);
-            pdf.text("www.seusite.com", 10, y);
-            y += 10;
-            pdf.text("contato@seusite.com", 10, y);
 
             pdf.save("resultado-eneagrama.pdf");
         });
-
 
     </script>
 </body>

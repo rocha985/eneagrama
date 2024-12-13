@@ -32,7 +32,6 @@
             <button id="download-pdf">
                 <i class="fas fa-download"></i>
             </button>
-            <button class="close-btn" onclick="closePopup()">Fechar</button>
         </div>
     </div>
     
@@ -116,7 +115,7 @@
             pdf.setFontSize(20);
             pdf.setTextColor(0, 0, 0); 
 
-            let yPosition = 30;
+            let yPosition = 50;
 
             Array.from(resultContent).forEach((item) => {
                 const eneatipo = item.querySelector(".eneatipo").textContent;

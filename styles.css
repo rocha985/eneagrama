@@ -97,6 +97,7 @@ button:hover {
 }
 
 .popup {
+    display: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,6 +118,7 @@ button:hover {
     position: relative;
     width: 80%;
     max-width: 600px;
+    position: relative;
 }
 
 #result {
@@ -200,7 +202,8 @@ button:hover {
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: #007bff;
+    color: #000000;
+    z-index: 1;
 }
 
 #download-pdf:hover {

@@ -42,8 +42,9 @@
     <script src="questions.js"></script>
     <script>
         document.getElementById("start-button").addEventListener("click", function () {
-            document.getElementById("start-popup").style.display = "none";
-            document.querySelector(".form-container").style.display = "block";
+            document.getElementById("start-popup").style.display = "none"; // Oculta o popup inicial
+            document.querySelector(".form-container").style.display = "block"; // Exibe o formulário
+            document.getElementById("popup").style.display = "none"; // Garante que o popup de resultado esteja escondido
         });
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -82,13 +83,13 @@
                     data.forEach((eneatipoObj, index) => {
                         const { eneatipo, score } = eneatipoObj;
                         resultText += `<div class="result-item">
-                                           <span class="eneatipo">${eneatipo} ${descriptions[eneatipo]}</span>
-                                           <span class="score">${score} de 25</span>
-                                         </div>`;
+                                        <span class="eneatipo">${eneatipo} ${descriptions[eneatipo]}</span>
+                                        <span class="score">${score} de 25</span>
+                                        </div>`;
                     });
 
                     document.getElementById("result").innerHTML = resultText;
-                    document.getElementById("popup").style.display = "flex";
+                    document.getElementById("popup").style.display = "flex"; // Exibe o popup com o resultado
                 })
                 .catch(error => {
                     console.error("Erro ao calcular:", error);
@@ -97,8 +98,9 @@
         });
 
         function closePopup() {
-            document.getElementById("popup").style.display = "none";
+            document.getElementById("popup").style.display = "none"; // Fecha o popup de resultado
         }
+
 
         document.getElementById("download-pdf").addEventListener("click", function () {
             const { jsPDF } = window.jspdf;

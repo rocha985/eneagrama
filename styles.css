@@ -204,6 +204,9 @@ button:hover {
     cursor: pointer;
     color: #000000;
     z-index: 1;
+    width: auto;
+    height: auto;
+    padding: 0;
 }
 
 #download-pdf:hover {

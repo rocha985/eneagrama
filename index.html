@@ -42,9 +42,9 @@
     <script src="questions.js"></script>
     <script>
         document.getElementById("start-button").addEventListener("click", function () {
-            document.getElementById("start-popup").style.display = "none"; // Oculta o popup inicial
-            document.querySelector(".form-container").style.display = "block"; // Exibe o formulário
-            document.getElementById("popup").style.display = "none"; // Garante que o popup de resultado esteja escondido
+            document.getElementById("start-popup").style.display = "none";
+            document.querySelector(".form-container").style.display = "block";
+            document.getElementById("popup").style.display = "none";
         });
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -89,7 +89,7 @@
                     });
 
                     document.getElementById("result").innerHTML = resultText;
-                    document.getElementById("popup").style.display = "flex"; // Exibe o popup com o resultado
+                    document.getElementById("popup").style.display = "flex";
                 })
                 .catch(error => {
                     console.error("Erro ao calcular:", error);
@@ -98,7 +98,7 @@
         });
 
         function closePopup() {
-            document.getElementById("popup").style.display = "none"; // Fecha o popup de resultado
+            document.getElementById("popup").style.display = "none";
         }
 
 
@@ -107,30 +107,35 @@
 
             const pdf = new jsPDF();
 
-            const resultContent = document.getElementById("result").children;
+            pdf.setFont('Arial', 'normal');
+            
+            pdf.setFontSize(20);
+            pdf.setTextColor(40, 167, 69);
+            pdf.text("Resultado do Teste de Eneagrama", 10, 20);
 
-            pdf.setFontSize(16);
-            pdf.text("Resultado do Teste de Eneagrama", 10, 10);
+            pdf.setFontSize(14);
+            pdf.setTextColor(0, 0, 0);
+            pdf.text("Provavelmente seu eneatipo é um dos três com maior pontuação:", 10, 30);
 
             pdf.setFontSize(12);
+            let y = 40;
 
-            let yPosition = 20; 
+            const resultContent = document.getElementById("result").innerText;
 
-            Array.from(resultContent).forEach((item) => {
-                const eneatipo = item.querySelector(".eneatipo").textContent;
-                const score = item.querySelector(".score").textContent;
-
-                pdf.text(eneatipo, 10, yPosition);
-
-                const scoreWidth = pdf.getTextWidth(score);
-                const pageWidth = pdf.internal.pageSize.width;
-                pdf.text(score, pageWidth - scoreWidth - 10, yPosition);
-
-                yPosition += 10; 
+            const results = resultContent.split("\n");
+            results.forEach(result => {
+                pdf.text(result, 10, y);
+                y += 10;
             });
+
+            pdf.setFontSize(10);
+            pdf.text("www.seusite.com", 10, y);
+            y += 10;
+            pdf.text("contato@seusite.com", 10, y);
 
             pdf.save("resultado-eneagrama.pdf");
         });
+
 
     </script>
 </body>

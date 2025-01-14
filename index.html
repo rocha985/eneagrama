@@ -106,32 +106,48 @@
 
             const pdf = new jsPDF();
 
-            const resultContent = document.getElementById("result").children;
+            const logoUrl = 'data:image/jpeg;base64,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';
+            
+            const img = new Image();
+            img.src = logoUrl;
+            img.onload = function() {
+                const imgWidth = 30; 
+                const imgHeight = 30;
+                const textXPosition = imgWidth + 15;
+                
+                pdf.addImage(img, 'PNG', 10, 10, imgWidth, imgHeight);
+                pdf.setFontSize(16);
+                pdf.text("IKIGA Desenvolvimento Humano", textXPosition, 25);
+                pdf.text("Teste de Eneagrama", textXPosition, 35);
 
-            pdf.setFontSize(36);
-            pdf.setTextColor(40, 167, 69);
-            pdf.text("Resultado do Teste de Eneagrama", 10, 20);
+                pdf.setFontSize(36);
+                pdf.setTextColor(40, 167, 69);
+                pdf.text("Resultado do Teste de Eneagrama", 10, 60);
 
-            pdf.setFontSize(20);
-            pdf.setTextColor(0, 0, 0); 
+                pdf.setFontSize(20);
+                pdf.setTextColor(0, 0, 0); 
+                
+                let yPosition = 80;
 
-            let yPosition = 50;
+                const resultContent = document.getElementById("result").children;
+                
+                Array.from(resultContent).forEach((item) => {
+                    const eneatipo = item.querySelector(".eneatipo").textContent;
+                    const score = item.querySelector(".score").textContent;
 
-            Array.from(resultContent).forEach((item) => {
-                const eneatipo = item.querySelector(".eneatipo").textContent;
-                const score = item.querySelector(".score").textContent;
+                    pdf.text(eneatipo, 10, yPosition);
 
-                pdf.text(eneatipo, 10, yPosition);
+                    const scoreWidth = pdf.getTextWidth(score);
+                    const pageWidth = pdf.internal.pageSize.width;
+                    pdf.text(score, pageWidth - scoreWidth - 10, yPosition);
 
-                const scoreWidth = pdf.getTextWidth(score);
-                const pageWidth = pdf.internal.pageSize.width;
-                pdf.text(score, pageWidth - scoreWidth - 10, yPosition);
+                    yPosition += 10;
+                });
 
-                yPosition += 10;
-            });
-
-            pdf.save("resultado-eneagrama.pdf");
+                pdf.save("resultado-eneagrama.pdf");
+            };
         });
+
 
     </script>
 </body>

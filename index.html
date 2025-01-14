@@ -113,20 +113,20 @@
             img.onload = function() {
                 const imgWidth = 30; 
                 const imgHeight = 30;
-                const textXPosition = imgWidth + 15;
+                const textXPosition = imgWidth;
                 
                 pdf.addImage(img, 'PNG', 1, 1, imgWidth, imgHeight);
                 pdf.setFontSize(16);
-                pdf.text("IKIGAI Desenvolvimento Humano", textXPosition, 30);
+                pdf.text("IKIGAI Desenvolvimento Humano", textXPosition, 15);
 
                 pdf.setFontSize(36);
                 pdf.setTextColor(40, 167, 69);
-                pdf.text("Resultado do Teste de Eneagrama", 10, 60);
+                pdf.text("Resultado do Teste de Eneagrama", 10, 50);
 
                 pdf.setFontSize(20);
                 pdf.setTextColor(0, 0, 0); 
                 
-                let yPosition = 90;
+                let yPosition = 80;
 
                 const resultContent = document.getElementById("result").children;
                 

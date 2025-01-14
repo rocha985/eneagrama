@@ -115,10 +115,9 @@
                 const imgHeight = 30;
                 const textXPosition = imgWidth + 15;
                 
-                pdf.addImage(img, 'PNG', 10, 10, imgWidth, imgHeight);
+                pdf.addImage(img, 'PNG', 1, 1, imgWidth, imgHeight);
                 pdf.setFontSize(16);
-                pdf.text("IKIGA Desenvolvimento Humano", textXPosition, 25);
-                pdf.text("Teste de Eneagrama", textXPosition, 35);
+                pdf.text("IKIGAI Desenvolvimento Humano", textXPosition, 30);
 
                 pdf.setFontSize(36);
                 pdf.setTextColor(40, 167, 69);
@@ -127,7 +126,7 @@
                 pdf.setFontSize(20);
                 pdf.setTextColor(0, 0, 0); 
                 
-                let yPosition = 80;
+                let yPosition = 90;
 
                 const resultContent = document.getElementById("result").children;
                 

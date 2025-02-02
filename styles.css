@@ -181,7 +181,7 @@ button:hover {
     padding: 30px;
     border-radius: 10px;
     width: 90%;
-    max-width: 750px;
+    max-width: 700px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
 }
@@ -196,6 +196,7 @@ button:hover {
 .start-popup-content p {
     font-size: 24px;
     line-height: 1.5;
+    text-align: left;
 }
 
 .highlight {

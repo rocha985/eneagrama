@@ -176,6 +176,29 @@ button:hover {
     z-index: 1000;
 }
 
+.start-popup-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.start-popup-content h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #28a745;
+    text-align: center; 
+}
+
+.start-popup-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+}
+
 .start-popup .popup-content {
     text-align: center;
 }

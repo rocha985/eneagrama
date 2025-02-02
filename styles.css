@@ -187,7 +187,7 @@ button:hover {
 }
 
 .start-popup-content h2 {
-    font-size: 36px;
+    font-size: 40px;
     margin-bottom: 15px;
     color: #28a745;
     text-align: center; 
@@ -196,7 +196,6 @@ button:hover {
 .start-popup-content p {
     font-size: 24px;
     line-height: 1.5;
-    text-align: left;
 }
 
 .highlight {
@@ -212,6 +211,7 @@ button:hover {
     padding: 10px 20px;
     background-color: #28a745;
     color: white;
+    font-size: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
